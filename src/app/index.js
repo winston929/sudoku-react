@@ -25,7 +25,7 @@ class App extends React.Component {
     }
 
     toSolve() {
-        this.state.values = sudoku(this.state.values);
+        this.state.values = sudoku(this.state.values).board;
         for(let i=0; i<9; i++) {
             for(let j=0; j<9; j++) {
                 this.setValue(this.state.values[i][j], i, j);

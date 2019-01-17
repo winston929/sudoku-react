@@ -1,6 +1,9 @@
 function sudoku(board) {
-  solve(board);
-  return board;
+  const valid = solve(board);
+  return {
+    board,
+    valid
+  };
 }
 
 function solve(board) {
