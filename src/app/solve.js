@@ -30,18 +30,29 @@ function isValid(board, row, column) {
 }
 
 function checkRow(board, row) {
-  const rowList = board[row].filter(n => n !== 0 && n !== '');
-  return rowList.length === [...new Set(rowList)].length;
+  const rowList = [];
+  for (let i = 0; i < 9; i++) {
+    if (board[row][i] !== 0 && board[row][i] !== '') {
+      if(rowList.find(value => board[row][i] === value)) {
+        return false;
+      }
+      rowList.push(board[row][i]);
+    }
+  }
+  return true;
 }
 
 function checkColumn(board, column) {
   const columnList = [];
   for (let i = 0; i < 9; i++) {
     if (board[i][column] !== 0 && board[i][column] !== '') {
+      if(columnList.find(value => board[i][column] === value)) {
+        return false;
+      }
       columnList.push(board[i][column]);
     }
   }
-  return columnList.length === [...new Set(columnList)].length;
+  return true;
 }
 
 function checkSection(board, row, column) {
@@ -51,11 +62,14 @@ function checkSection(board, row, column) {
   for (let i = row; i < row + 3; i++) {
     for (let j = column; j < column + 3; j++) {
       if (board[i][j] !== 0 && board[i][j] !== '') {
+        if(list.find(value => board[i][j] === value)) {
+          return false;
+        }
         list.push(board[i][j]);
       }
     }
   }
-  return list.length === [...new Set(list)].length;
+  return true;
 }
 
 export default sudoku;
